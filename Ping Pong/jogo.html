@@ -1,0 +1,114 @@
+<meta charset="UTF-8">
+
+<canvas id="teste" width="600" height="400"></canvas>
+<p id="coord"></p>
+
+<script>
+
+    var tela = document.getElementById('teste');
+    var pincel = tela.getContext('2d');
+    var ptsUsuario = 0;
+    var ptsPC = 0;    
+    var xBolinha = 300;
+    var yBolinha = 200;
+    var raio = 10;
+    var velXBolinha = 4;
+    var velYBolinha = 4;
+    var xRaqueteUsuario = 5;
+    var yRaqueteUsuario = 200;
+    var xRaquetePC = 585;
+    var yRaquetePC = 30;
+    var somPonto = new Audio("ponto.mp3");
+    var somRaquete = new Audio("raquetada.mp3");
+    
+    pincel.fillStyle = "red";
+    pincel.fillRect(0,0,600,400);
+
+    setInterval(desenhaTudo, 10);
+    tela.onmousemove = raqueteUsuario;
+
+    function desenhaBolinha(x, y, raio) {
+        pincel.fillStyle = "white";
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2*3.14);
+        pincel.fill();
+    }
+
+    function limpaTela(){
+        pincel.fillStyle = "black";
+        pincel.fillRect(0,0,600,400);
+    }
+
+    
+
+    function colidiu(){
+
+        if( xBolinha - raio >= xRaqueteUsuario && xBolinha - raio <= xRaqueteUsuario + 10) {
+            if (yBolinha  >= yRaqueteUsuario && yBolinha <= yRaqueteUsuario+100) {
+                velXBolinha *= -1;
+                somRaquete.play();
+                
+            }
+        }             
+        
+        if(xBolinha + raio >= xRaquetePC && xBolinha + raio <= xRaquetePC + 10) {
+            if (yBolinha >= yRaquetePC && yBolinha <= yRaquetePC+100) {
+                velXBolinha *= -1;
+                somRaquete.play();
+            }
+        }
+
+    }
+
+    function andaBolinha(){
+
+        colidiu();
+
+        if(xBolinha >= 600-raio){
+            ptsUsuario++;
+            velXBolinha *= -1; 
+            somPonto.play();
+        } else if (xBolinha <= 0+raio){
+            ptsPC++;
+            velXBolinha *= -1;
+            somPonto.play();
+        }
+        if(yBolinha >= 400-raio || yBolinha <= 0+raio){
+           velYBolinha *= -1;
+
+        }
+        xBolinha += velXBolinha;
+        yBolinha += velYBolinha;
+
+        // document.getElementById('coord').innerText = 'x: ' + xBolinha + ' y: ' + yBolinha;
+
+        limpaTela();
+        desenhaBolinha(xBolinha, yBolinha, raio);
+    }
+
+    function desenhaRaqueteUsuario(){
+        pincel.fillStyle = "white";
+        pincel.fillRect(xRaqueteUsuario,yRaqueteUsuario,10,100);
+    }
+
+    function desenhaRaquetePC(){
+        pincel.fillStyle = "white";
+        pincel.fillRect(xRaquetePC,yRaquetePC,10,100);
+    }
+
+    function raqueteUsuario(evento){
+        yRaqueteUsuario = evento.pageY - tela.offsetTop;
+    }
+
+    function computaPts(){
+        document.getElementById("coord").innerText = "Usuario: " + ptsUsuario + " vs. PC: " + ptsPC;
+    }
+
+    function desenhaTudo(){
+        andaBolinha();
+        computaPts();
+        desenhaRaqueteUsuario();
+        desenhaRaquetePC();
+    }
+
+</script>
