@@ -1,0 +1,34 @@
+<meta charset="UTF-8">
+<script>
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    function escreve(texto){
+        document.write(texto);
+        pulaLinha();
+    }
+
+    var vitorias = parseInt(prompt("Numero vitorias:"));
+    var empates = parseInt(prompt("Numero empates"));
+
+    var pontos = vitorias * 3 + empates;
+
+    escreve("Total de pontos: " + pontos);
+
+    var ptsAnoPassado = 28;
+
+    if (pontos > ptsAnoPassado){
+        escreve("Melhorou!");
+    }
+
+    if (pontos < ptsAnoPassado){
+        escreve("Piorou!");
+    }
+
+    if(pontos == ptsAnoPassado){
+        escreve("Igual!");
+    }
+
+
+</script>

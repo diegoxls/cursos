@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function desenhaGrafico(x,y, alt, larg, cores, serie, nome){
+        
+        var ultimoRect = y;
+        for(var i = 0; i < serie.length;i++){
+            
+            pincel.fillStyle = cores[i];
+            pincel.strokeStyle = "black";
+            pincel.fillRect(x, ultimoRect, larg, serie[i] );
+            pincel.strokeRect(x, ultimoRect, larg, serie[i] );
+            ultimoRect = ultimoRect + serie[i];
+        }
+
+        pincel.font = "20px Calibri";
+        pincel.fillStyle = "Black";
+        pincel.fillText(nome, x, ultimoRect+20 );
+        
+    } 
+
+
+
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    var leg = ['chrome', 'firefox', 'safari', 'outros'];
+    var _2015 = [50,25,20,5];
+    var _2016 = [65,20,13,2];
+    var _2016 = [65,20,13,2];
+    var _2017 = [50,20,13,10,7];
+    var cores = ['blue', 'yellow', 'red', 'purple', 'green', 'orange'];
+
+    desenhaGrafico(50,50,50,50,cores,_2015,"2015");
+    desenhaGrafico(150,50,50,50,cores,_2016,"2016");
+    desenhaGrafico(250,50,50,50,cores,_2017,"2017");
+
+
+
+
+</script>

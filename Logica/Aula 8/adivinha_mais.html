@@ -1,0 +1,71 @@
+<meta charset="UTF-8">
+
+<input />
+
+<button>
+    Compare!
+</button>
+
+<script>
+
+
+    function sorteia() {
+        return Math.round(Math.random() * 10);
+    }
+
+    function sorteiaNumeros(n){
+        var segredos = [];
+
+        
+        for(var numero = 1;numero <= n; numero++){
+            
+            var repetido = true;
+            while(repetido){
+                var gerado = sorteia();
+                repetido = false;
+                for (var i = 0; i < segredos.length; i++){
+                    if(segredos[i] == gerado){
+                        repetido = true;
+                        break;
+                    }
+                }
+            }
+                
+            segredos.push(gerado);
+        }
+
+        console.log(segredos.toString());
+        return segredos;
+        
+    }
+
+    var segredos = sorteiaNumeros(5);
+
+    var input = document.querySelector("input");
+    input.focus();
+
+    function verifica() {
+
+        var acertou = false;
+
+        for(var n = 0; n < segredos.length; n++){
+            if (input.value == segredos[n]) {
+                acertou = true;
+                break;
+            }
+        }
+
+        if (acertou){
+            alert("Acertou!");
+        } else {
+            alert("Errou!");
+        }
+
+        input.value = "";
+        input.focus() ;
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verifica;
+
+</script>

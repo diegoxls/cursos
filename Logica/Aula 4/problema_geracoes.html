@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<script>
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function escreve(texto) {
+        document.write(texto);
+        pulaLinha();
+    }
+
+    var anosGeracao = 28;
+    var anoBrasil = 1500;
+    var anoAtual = 2020;
+
+    var anosPassados = anoAtual - anoBrasil;
+    var totalGeracoes = anosPassados / anosGeracao;
+
+    escreve("<big>Invasão de Portugal: " + anoBrasil + "</big>");
+    escreve("Ano atual: " + anoAtual);
+    escreve("");
+    escreve("Em média, gerações surgem a cada 28 anos.");
+    escreve("Com isso, tivemos aproximadamente " + Math.round(totalGeracoes) + " novas gerações desde a invasão de Portugal");
+
+
+</script>

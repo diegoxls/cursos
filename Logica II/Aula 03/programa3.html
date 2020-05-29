@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function desenhaQuadrado(evento){
+        
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        var r = Math.round(255*Math.random());
+        var g = Math.round(255*Math.random());
+        var b = Math.round(255*Math.random());
+
+        pincel.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+        pincel.fillRect(x-25,y-25,50,50);
+
+        // alert(x + ',' + y);
+        console.log(evento);
+        
+    }
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    tela.onclick = desenhaQuadrado;
+    
+</script>

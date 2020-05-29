@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function limpaTela(){
+        pincel.clearRect(0,0,600,400);
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(0,0,600,400);
+    }
+
+    function desenhaCirculo(x, y, raio, cor){
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        // if(x >= 580 || x <= 30){
+        //     pincel.ellipse(x,y,raio*0.8,raio,0,0,2*3.14);
+        // } else {
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+        // }
+    
+        pincel.fill();        
+
+
+    }
+
+    function atualizaTela(){
+
+        limpaTela();
+        if(indo){
+            if(x > 590){
+                indo = false;
+                x--;
+            } else {
+                x++;
+            }
+        } else {
+            if(x<10){
+                indo = true;
+                x++;
+            } else {
+                x--;
+            }
+        }
+        
+        desenhaCirculo(x,100,20,"yellow");
+
+    }
+
+    var x = -10;
+    var indo = true;
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+
+    setInterval(atualizaTela, 1);
+
+    
+
+</script>

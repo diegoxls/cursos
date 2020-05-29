@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+<script>
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    function escreve(texto){
+        document.write(texto);
+        pulaLinha();
+    }
+
+    var login = "diego";
+    var senha = "diego";
+    var senhaOK = false;
+
+    var pedeLogin = "";
+    var pedeSenha = "";
+
+    var tent = 1;
+
+    while(tent <= 3 && senhaOK == false){
+
+        pedeLogin = prompt("Login:");
+        pedeSenha = prompt("Senha:");
+
+        if(login == pedeLogin && senha == pedeSenha){
+            escreve("Acesso permitido!");
+            senhaOK = true;
+        } else {
+            escreve("Dados invalidos! " + tent + "º tentativa!");
+            senhaOK = false;
+            tent++;
+        }
+    }
+
+    escreve("FIM");
+    
+
+</script>

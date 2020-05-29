@@ -1,0 +1,52 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function limpaTela(){
+        pincel.clearRect(0,0,600,400);
+        pincel.fillStyle = "lightgrey";
+        pincel.fillRect(0,0,600,400);
+    }
+
+    function desenhaCirculo(x, y, raio, cor){
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        // if(x >= 580 || x <= 30){
+        //     pincel.ellipse(x,y,raio*0.8,raio,0,0,2*3.14);
+        // } else {
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+        // }
+    
+        pincel.fill();        
+
+
+    }
+
+    function atualizaTela(){
+
+        limpaTela();
+        if(tamanho > 30 || tamanho < 20){
+            sentido = sentido * -1;
+        }
+
+        tamanho = tamanho + sentido*0.1;
+        
+        desenhaCirculo(100,100,tamanho,"yellow");
+
+    }
+
+    var sentido = 1;
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var tamanho = 20;
+
+
+    setInterval(atualizaTela, 1);
+
+
+    
+
+</script>

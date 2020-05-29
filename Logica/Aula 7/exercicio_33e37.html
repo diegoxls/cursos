@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<script>
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    function escreve(texto){
+        document.write(texto);
+        pulaLinha();
+    }
+
+    var n1 = 30;
+
+    while(n1 <= 40){
+        if(n1 != 33 && n1 != 37){
+            escreve("Número : " + n1);
+        }
+        n1 = n1 + 1;
+    }
+
+    escreve("FIM");
+
+</script>

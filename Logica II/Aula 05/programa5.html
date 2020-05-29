@@ -1,0 +1,88 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="450"></canvas>
+
+<script>
+
+    function desenhaCirculo(x, y, raio, cor){
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2*3.14);
+        pincel.fill();
+    }
+    
+    function limpaTela(){
+        pincel.fillStyle = 'grey';
+        pincel.fillRect(0,0,600,400);
+    }
+
+    function desenhaAlvo(){
+        x = geraPosicao(600)
+        y = geraPosicao(400)
+        desenhaCirculo(x,y,raio + 20,"red");
+        desenhaCirculo(x,y,raio + 10,"white");
+        desenhaCirculo(x,y,raio,"red");
+    }
+
+    function geraPosicao(max){
+        return Math.floor(Math.random() * max);
+    }
+
+    function atualizaTela(){
+        limpaTela();
+        desenhaAlvo();
+
+        if(acertou == 1){
+            pontos++;
+            tempo = Math.max(500, tempo * ((100-pontos)/100) );
+        } else {
+            erros++;
+        }
+
+        pincel.fillStyle = "yellow";
+        pincel.fillRect(0,400,600,50);
+        pincel.fillStyle = "black";
+        pincel.font = "20px Calibri";
+        pincel.fillText("Acertos: " + pontos + " - Erros: " + erros, 10, 425);
+
+        acertou = 0;
+        console.log(tempo + ' ' + pontos );
+
+    }
+
+    function dispara(evento){
+
+        var cliqueX = evento.pageX - tela.offsetLeft;
+        var cliqueY = evento.pageY - tela.offsetTop;
+
+        if(cliqueX >= x-raio && cliqueX <= x+raio && cliqueY >= y-raio && cliqueY <= y+raio){
+            acertou = 1;
+
+            clearInterval(intervalo);
+            //atualizaTela();
+            intervalo = setInterval(atualizaTela, tempo);
+
+        }
+        
+
+    }
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var raio = 10;
+    var pontos = 0;
+    var acertou = 0;
+    var tempo = 2000;
+    var erros = 0;
+    var x = 0;
+    var y = 0;
+    
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0,0,600,400);
+
+    
+    var intervalo = setInterval(atualizaTela, tempo);
+    tela.onclick = dispara;
+        
+
+</script>

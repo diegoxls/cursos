@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function mudaCor(){
+        
+        idCor++
+
+        if (idCor >= cores.length){
+            idCor = 0;
+        }
+
+        pincel.fillStyle = cores[idCor];
+        pincel.fillRect(0,0,20,400);
+        return false;
+
+    }
+
+    function desenhaCirculo(evento){
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2*3.14);
+        pincel.fill();
+
+    }
+
+    var idCor = 0;
+    var cores = ["red", "blue", "yellow", "purple", "orange"];
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    mudaCor();
+
+    tela.onclick = desenhaCirculo;
+    tela.oncontextmenu = mudaCor;
+
+</script>

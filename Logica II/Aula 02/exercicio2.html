@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function desenhaQuadrado(x, y, num, den, cor, texto){
+        pincel.font = "20px Calibri";
+        pincel.fillStyle = "black";
+        pincel.fillText(texto, den*50+10, y+30);
+        pincel.strokeStyle = "black";
+        pincel.fillStyle = cor;
+
+        for(var i = 0; i < den; i++){
+            if(i + 1 <= num){
+                pincel.fillRect(x+(50*i), y,50,50);
+            }
+            pincel.strokeRect(x+(50*i), y,50,50);
+        }
+        
+    }
+
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+
+    //desenha fração
+    desenhaQuadrado(0,0,5,8,"green", "Fração 5/8");
+    desenhaQuadrado(0,60,3,5,"blue", "Fração 3/5");
+    desenhaQuadrado(0,120,4,4,"red", "Fração 4/4");
+    desenhaQuadrado(0,180,1,3,"purple", "Fração 1/3");
+
+
+</script>

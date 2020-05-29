@@ -1,0 +1,22 @@
+<meta charset="UTF-8">
+<script>
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    function escreve(texto){
+        document.write(texto);
+        pulaLinha();
+    }
+
+    // var multi = 1;
+    var multiPor = parseInt(prompt("Tabuada de qual número"));
+
+    for(var multi = 1;multi <= 10; multi++){
+
+        escreve(multiPor + " x " + multi + " = " + (multiPor * multi));
+        
+    }
+
+
+</script>
